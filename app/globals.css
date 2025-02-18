@@ -1,14 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #141526;
-  --foreground: #ffffff;
+@font-face {
+  font-family: 'Kanit';
+  src: url('/fonts/Kanit-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-body {
-  font-family: 'Kanit', sans-serif;
-  background-color: var(--background);
-  color: var(--foreground);
-} 
+/* เพิ่ม weight อื่นๆ ตามต้องการ */ 

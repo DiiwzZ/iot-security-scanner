@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(req: Request) {
+export async function POST() {
     try {
-        // จำลองการแสกน
         const devices = [
             {
                 name: "Smart CCTV",
@@ -11,9 +10,8 @@ export async function POST(req: Request) {
                 vulnerabilities: ["Default Password", "Open Ports"]
             }
         ];
-
         return NextResponse.json({ devices });
-    } catch (error) {
-        return NextResponse.json({ error: "Scan failed" }, { status: 500 });
+    } catch {
+        return NextResponse.json({ message: "Scan failed" }, { status: 500 });
     }
 } 

@@ -2,8 +2,15 @@
 
 import { createContext, useContext, useState } from 'react';
 
+interface Device {
+    name: string;
+    ip: string;
+    risk: string;
+    vulnerabilities: string[];
+}
+
 interface ScanContextType {
-    devices: any[];
+    devices: Device[];
     scanning: boolean;
     startScan: () => Promise<void>;
     attackDevice: (deviceIP: string) => Promise<void>;
@@ -12,7 +19,7 @@ interface ScanContextType {
 const ScanContext = createContext<ScanContextType | undefined>(undefined);
 
 export function ScanProvider({ children }: { children: React.ReactNode }) {
-    const [devices, setDevices] = useState([]);
+    const [devices, setDevices] = useState<Device[]>([]);
     const [scanning, setScanning] = useState(false);
 
     const startScan = async () => {
