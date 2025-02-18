@@ -22,19 +22,34 @@ export default function Home() {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                    <ResultCard 
-                        title="อุปกรณ์ที่ตรวจพบ"
-                        deviceName="Smart CCTV"
-                        deviceIP="IP: 192.168.1.100"
-                        status="เสี่ยง"
-                        showAttackButton={true}
-                    />
-                    <ResultCard 
-                        title="รายละเอียดช่องโหว่"
-                        deviceName="Default Password"
-                        deviceIP="ความรุนแรง: สูง"
-                        status="อันตราย"
-                    />
+                    {devices.length > 0 ? (
+                        devices.map((device, index) => (
+                            <ResultCard 
+                                key={index}
+                                title="อุปกรณ์ที่ตรวจพบ"
+                                deviceName={device.name}
+                                deviceIP={`IP: ${device.ip}`}
+                                status={device.risk === 'high' ? 'เสี่ยง' : 'ปลอดภัย'}
+                                showAttackButton={true}
+                            />
+                        ))
+                    ) : (
+                        <>
+                            <ResultCard 
+                                title="อุปกรณ์ที่ตรวจพบ"
+                                deviceName="Smart CCTV"
+                                deviceIP="IP: 192.168.1.100"
+                                status="เสี่ยง"
+                                showAttackButton={true}
+                            />
+                            <ResultCard 
+                                title="รายละเอียดช่องโหว่"
+                                deviceName="Default Password"
+                                deviceIP="ความรุนแรง: สูง"
+                                status="อันตราย"
+                            />
+                        </>
+                    )}
                 </div>
             </div>
         </main>
