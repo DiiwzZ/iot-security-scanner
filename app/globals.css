@@ -1,9 +1,47 @@
-@font-face {
-  font-family: 'Kanit';
-  src: url('/fonts/Kanit-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #141526;
+  --foreground: #fff;
 }
 
-/* เพิ่ม weight อื่นๆ ตามต้องการ */ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Kanit', sans-serif;
+}
+
+.scan-button::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 3px solid #3498db;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+} 

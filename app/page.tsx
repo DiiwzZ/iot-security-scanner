@@ -11,7 +11,7 @@ export default function Home() {
     const { devices } = useScan();
 
     return (
-        <main className="min-h-screen bg-[#141526] text-white">
+        <main className="min-h-screen bg-[#141526]">
             <Navbar />
             
             <div className="max-w-5xl mx-auto pt-24 px-4">
@@ -22,25 +22,19 @@ export default function Home() {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                    {devices.length > 0 ? (
-                        devices.map((device, index) => (
-                            <ResultCard 
-                                key={index}
-                                title="อุปกรณ์ที่ตรวจพบ"
-                                deviceName={device.name}
-                                deviceIP={device.ip}
-                                status={device.risk === 'high' ? 'เสี่ยง' : 'ปลอดภัย'}
-                                showAttackButton={true}
-                            />
-                        ))
-                    ) : (
-                        <ResultCard 
-                            title="รายละเอียดช่องโหว่"
-                            deviceName="Default Password"
-                            deviceIP="ความรุนแรง: สูง"
-                            status="อันตราย"
-                        />
-                    )}
+                    <ResultCard 
+                        title="อุปกรณ์ที่ตรวจพบ"
+                        deviceName="Smart CCTV"
+                        deviceIP="IP: 192.168.1.100"
+                        status="เสี่ยง"
+                        showAttackButton={true}
+                    />
+                    <ResultCard 
+                        title="รายละเอียดช่องโหว่"
+                        deviceName="Default Password"
+                        deviceIP="ความรุนแรง: สูง"
+                        status="อันตราย"
+                    />
                 </div>
             </div>
         </main>
