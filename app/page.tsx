@@ -8,36 +8,39 @@ import ResultCard from './components/ResultCard';
 import { useScan } from './context/ScanContext';
 
 export default function Home() {
-    const { devices } = useScan();  // เพิ่มการใช้ devices จาก context
+    const { devices } = useScan();
 
     return (
         <main className="min-h-screen bg-[#141526] text-white">
             <Navbar />
             
             <div className="max-w-5xl mx-auto pt-24 px-4">
-                <div className="bg-[rgba(35,37,57,0.95)] rounded-3xl p-12 mb-8 text-center">
-                    <h2 className="text-2xl mb-8">แสกนอุปกรณ์ IoT ในเครือข่าย</h2>
+                <div className="bg-[rgba(35,37,57,0.95)] rounded-3xl p-12 mb-8 text-center shadow-xl">
+                    <h2 className="text-2xl mb-8 font-medium">แสกนอุปกรณ์ IoT ในเครือข่าย</h2>
                     <ScanButton />
                     <Stats />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
-                    {devices.map((device, index) => (
+                <div className="grid md:grid-cols-2 gap-6">
+                    {devices.length > 0 ? (
+                        devices.map((device, index) => (
+                            <ResultCard 
+                                key={index}
+                                title="อุปกรณ์ที่ตรวจพบ"
+                                deviceName={device.name}
+                                deviceIP={device.ip}
+                                status={device.risk === 'high' ? 'เสี่ยง' : 'ปลอดภัย'}
+                                showAttackButton={true}
+                            />
+                        ))
+                    ) : (
                         <ResultCard 
-                            key={index}
-                            title="อุปกรณ์ที่ตรวจพบ"
-                            deviceName={device.name}
-                            deviceIP={device.ip}
-                            status={device.risk === 'high' ? 'เสี่ยง' : 'ปลอดภัย'}
-                            showAttackButton={true}
+                            title="รายละเอียดช่องโหว่"
+                            deviceName="Default Password"
+                            deviceIP="ความรุนแรง: สูง"
+                            status="อันตราย"
                         />
-                    ))}
-                    <ResultCard 
-                        title="รายละเอียดช่องโหว่"
-                        deviceName="Default Password"
-                        deviceIP="ความรุนแรง: สูง"
-                        status="อันตราย"
-                    />
+                    )}
                 </div>
             </div>
         </main>
